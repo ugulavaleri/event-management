@@ -21,7 +21,8 @@ class EventController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:sanctum')->except(['index, show']);
+//        $this->middleware('auth:sanctum')->except(['index, show']);
+        $this->authorizeResource(Event::class,'event');
     }
 
     public function index()
@@ -64,9 +65,9 @@ class EventController extends Controller
     public function update(Request $request, Event $event)
     {
 
-        if(Gate::denies('update-event', $event)){
-            abort(403,'Denied access to this action');
-        }
+//        if(Gate::denies('update-event', $event)){
+//            abort(403,'Denied access to this action');
+//        }
 
         $data = $request->validate([
             'name' => 'sometimes|string',

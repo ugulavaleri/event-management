@@ -16,7 +16,8 @@ class AttendeeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:sanctum')->except(['index', 'show']);
+//        $this->middleware('auth:sanctum')->except(['index', 'show']);
+        $this->authorizeResource(Attendee::class,'attendee');
     }
 
     private $relations = ['user'];
@@ -62,9 +63,9 @@ class AttendeeController extends Controller
      */
     public function destroy(Event $event, Attendee $attendee)
     {
-        if(Gate::denies('update-event', $event)){
-            abort(403,'Denied access to this action');
-        }
+//        if(Gate::denies('update-event', $event)){
+//            abort(403,'Denied access to this action');
+//        }
 
         $attendee->delete();
 

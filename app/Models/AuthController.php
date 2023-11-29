@@ -19,11 +19,12 @@ class AuthController extends Model
             'password' => 'required',
         ]);
 
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
         if(!$user){
             ValidationException::withMessages(['email' => 'email is not correct']);
         }
+
 
         if(!Hash::check($request->password, $user->password)){
             ValidationException::withMessages(['password' => 'password is not correct']);
